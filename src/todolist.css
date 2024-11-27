@@ -1,0 +1,19 @@
+.task {
+    color: red;
+    padding: 5px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.task.completed span {
+    color: green;
+    opacity: 0.5;
+}
+
+ul {
+    list-style-type: none;
+}
+
+input, li span, button {
+    margin-right: 10px;
+}
