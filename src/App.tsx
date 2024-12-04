@@ -1,5 +1,7 @@
 import React, {useState, useEffect, useRef, SetStateAction} from "react";
 import './todolist.css'
+import './App.css'
+
 
 interface Product {
   id: number;
@@ -39,6 +41,8 @@ function App(){
 
     setProduct((prevProduct) => [...prevProduct, newProduct]);
     setnewListName('');
+    setnewAmount(0);
+    setnewUnit('');
     setError('');
   }
 
@@ -59,15 +63,22 @@ function App(){
   }, [product]);
   return (
   <>
-    <div>
+    <div id="container">
       <h2>Bevásárló lista</h2>
       <div id="inputs">
-        <label htmlFor="">Terméknév</label>
-        <input type="text" value={newList} onChange={(e) =>{ setnewListName(e.target.value)}} name="" id="" />
-        <label htmlFor="">Mennyiség</label>
-        <input type="number" value={newAmount} onChange={(e) =>{ setnewAmount(parseInt(e.target.value))}} name="" id="" />
-        <label htmlFor="">Mennyiség egység</label>
-        <input type="text" value={newUnit} onChange={(e) =>{ setnewUnit(e.target.value)}} name="" id="" />
+        <div id="input">
+          <label htmlFor="">Terméknév:</label>
+          <input type="text" value={newList} onChange={(e) =>{ setnewListName(e.target.value)}} name="" id="inputProduct" />
+        </div>
+        <div id="input">
+          <label htmlFor="">Mennyiség:</label>
+          <input type="number" value={newAmount} onChange={(e) =>{ setnewAmount(parseInt(e.target.value))}} name="" id="inputProduct" />
+        </div>
+        <div id="input">
+          <label htmlFor="">Mennyiség egység:</label>
+          <input type="text" value={newUnit} onChange={(e) =>{ setnewUnit(e.target.value)}} name="" id="inputProduct" />
+        </div>
+        
         <button onClick={addItem}>Hozzáadás</button>
       </div>
        
@@ -80,16 +91,26 @@ function App(){
       <ul>
           {product.map((item) => {
             const itemClass = `item ${item.bought ? "bought" : ""}`;
+            const remainingItems = product.filter(item => !item.bought).length;
             return(
-            <li key={item.id} className={itemClass}>
+            <li  key={item.id} className={itemClass}>
               <span style={{opacity: item.bought? "0.5": "1"}}>
-              {item.name + " "+ item.amount + " " + item.unit}
-             
+                <p style={{paddingRight: "50px"} }>
+                  {item.name} 
+                </p>
+                <p style={{paddingRight: "50px"}}>
+                  {item.amount}
+                </p>
+                <p style={{paddingRight: "50px"}}>
+                  {item.unit}
+                </p>
               </span>
-              <button onClick={() => toggleTaskCompletion(item.id)}>
-                {item.bought ? "Visszaállítás": "Megvásárolva"}
-              </button>
-              <button onClick={() => removeTask(item.id)}>Törlés</button>
+                <button  onClick={() => toggleTaskCompletion(item.id)}>
+                  {item.bought ? "Visszaállítás": "Megvásárolva"}
+                </button>
+                <button  onClick={() => removeTask(item.id)}>Törlés</button>
+              
+                <p className="text-success">Hátralévő termékek száma: {remainingItems}</p>
             </li>
         
             );

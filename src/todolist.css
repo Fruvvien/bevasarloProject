@@ -1,8 +1,35 @@
+#container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    
+}
+#inputs{
+    display: flex;
+    flex-direction: column;
+    column-gap: 15px;
+    
+}
+#input{
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+   
+}
+
+
+
 .task {
     color: red;
     padding: 5px;
     margin-bottom: 5px;
     border-bottom: 1px solid #ddd;
+}
+
+label{
+    padding-right: 5px;
 }
 
 .task.completed span {
@@ -12,8 +39,31 @@
 
 ul {
     list-style-type: none;
+   
+}
+button{
+    width: 30%;
+    height: 30px;
+    align-self: flex-end;
+    text-decoration: none;
+    background-color: green;
+    color: white;
+    
+
 }
 
-input, li span, button {
-    margin-right: 10px;
+
+span{
+    display: flex;
+    justify-content: space-between;
+    
 }
+
+.item{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-right: 10px;
+    
+}
+
